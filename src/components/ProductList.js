@@ -1,6 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getProductsArrayAction } from '../actions/productActions';
+import Product from './Product';
 
 const ProductList = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getProductsArrayAction());
+        // eslint-disable-next-line
+    }, []);
+
+    const productList = useSelector(state => state.product.productList);
+
     return (
         <div className="container">
             <h2 className="table-heading">Product List</h2>
@@ -13,18 +25,21 @@ const ProductList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Cacahuetes y nueces</td>
-                        <td>200</td>
-                        <td><button className="table-button edit">Edit</button></td>
-                        <td><button className="table-button delete">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>Grosellas</td>
-                        <td>180</td>
-                        <td><button className="table-button edit">Edit</button></td>
-                        <td><button className="table-button delete">Delete</button></td>
-                    </tr>
+                    {
+                        productList.length ?
+                            productList.map(product => (
+                                <Product
+                                    key={product.id}
+                                    product={product}
+                                />
+                            ))
+                            :
+                            (
+                                <tr>
+                                    <td>No products available. Feel free to add some!</td>
+                                </tr>
+                            )
+                    }
                 </tbody>
             </table>
         </div>

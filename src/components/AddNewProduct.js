@@ -1,33 +1,30 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { modifyProductAction } from '../actions/productActions';
+import { addNewProductAction } from '../actions/productActions';
 
-const EditProduct = () => {
+const AddNewProduct = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const initialState = useSelector(state => state.product.productInEditMode);
-
-    const [name, setName] = useState(initialState.name)
-    const [price, setPrice] = useState(initialState.price)
+    const [name, setName] = useState("")
+    const [price, setPrice] = useState(null)
 
     const submitHandler = e => {
         e.preventDefault();
 
-        dispatch(modifyProductAction({
-            id: initialState.id,
+        dispatch(addNewProductAction({
             name,
             price
-        }));
+        }))
 
-        history.push('/');
+        history.push('/')
     };
 
     return (
         <form onSubmit={submitHandler}>
             <div className="card">
-                <h2 className="product-title">Edit Product</h2>
+                <h2 className="product-title">Add a Product</h2>
                 <h3>Product name</h3>
                 <input
                     name="name"
@@ -42,10 +39,10 @@ const EditProduct = () => {
                     value={price}
                     onChange={e => setPrice(Number(e.target.value))}
                 ></input>
-                <button className="submit-button">Submit changes</button>
+                <button className="submit-button">Submit</button>
             </div>
         </form>
     );
 };
 
-export default EditProduct;
+export default AddNewProduct;

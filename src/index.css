@@ -11,6 +11,11 @@ input {
   height: 40px;
 }
 
+thead {
+  background-color: #78c2ad;
+  color: white;
+}
+
 .header-box {
   height: 78px;
   background-color: #78c2ad;
@@ -22,14 +27,14 @@ input {
 .title {
   margin-left: 28px;
   vertical-align: middle;
-  color: rgb(240, 240, 240);
+  color: rgb(245, 245, 245);
 }
 
 .title:hover {
   cursor: pointer;
 }
 
-.button {
+.header-button {
   margin-right: 16px;
   height: 58px;
   background-color: #ff7851;
@@ -67,10 +72,12 @@ input {
 .edit {
   background-color: #78c2ad;
   color: white;
+  margin-right: 5px;
 }
 
 .delete {
-  background-color: #ff7851;
+  background-color:#ff7851;
+  color: rgb(245, 245, 245);
 }
 
 .card {

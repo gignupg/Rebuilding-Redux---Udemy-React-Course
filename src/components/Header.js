@@ -8,7 +8,7 @@ const Header = () => {
     return (
         <div className="header-box">
             <h2 onClick={() => history.push('/')} className="title">CRUD - React, Redux, REST API & Axios</h2>
-            <button onClick={() => history.push('/new-product')} className="button">Add a Product</button>
+            <button onClick={() => history.push('/new-product')} className="header-button">Add a Product</button>
         </div>
     );
 };
